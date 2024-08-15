@@ -23,15 +23,39 @@ yPin = #type:ignore
 bPin = #type:ignore
 piezoPin = #type:ignore
 
-class Software:
+
+class Hardware:
 
     def __init__(self):
+        self.gPin = gPin
+        self.rPin = rPin
+        self.yPin = yPin
+        self.bPin = bPin
+        self.piezoPin = piezoPin
+    
+    def ShowSequence(self):
+        pass
+    
+    def GetSequence(self):
+        pass
+
+    def RightSeqence(self):
+        pass
+
+    def WrongSequence(self):
+        pass
+
+
+class Software:
+
+    def __init__(self, hardwareClass):
         self.sequence = sequence
         self.sound = sound
         self.playerSeq = playerSeq
         self.level = level
         self.note = note
         self.speed = speed
+        self.hardwareClass = hardwareClass
     
     def GenerateSequence(self):
         pass
@@ -39,7 +63,3 @@ class Software:
     def CheckSequence(self):
         pass
 
-class Hardware:
-
-    def __init__(self):
-        pass
