@@ -1,10 +1,10 @@
 from machine import Pin
 from time import sleep_ms
+from random import randint
 
 
 #Variable setup
 sequence = []
-sound = []
 playerSeq = []
 level = 1
 note = 0
@@ -17,22 +17,20 @@ bSound = 349
 
 badSound = 233
 
-gPin = #type:ignore
-rPin = #type:ignore
-yPin = #type:ignore
-bPin = #type:ignore
-piezoPin = #type:ignore
+gPin = Pin(12, Pin.OUT)
+rPin = Pin(11, Pin.OUT)
+bPin = Pin(13, Pin.OUT)
+piezoPin = Pin(16, Pin.OUT)
 
 
-class Gameplay:
+class Game:
     pass
-
-class Hardware(Gameplay):
+    
+class Hardware(Game):
 
     def __init__(self, softwareClass):
         self.gPin = gPin
         self.rPin = rPin
-        self.yPin = yPin
         self.bPin = bPin
         self.piezoPin = piezoPin
         self.softwareClass = softwareClass
@@ -50,11 +48,10 @@ class Hardware(Gameplay):
         pass
 
 
-class Software(Gameplay):
+class Software(Game):
 
     def __init__(self, hardwareClass):
         self.sequence = sequence
-        self.sound = sound
         self.playerSeq = playerSeq
         self.level = level
         self.note = note
@@ -62,8 +59,12 @@ class Software(Gameplay):
         self.hardwareClass = hardwareClass
     
     def GenerateSequence(self):
-        pass
+        global sequence
+        sequence.append(randint(0,3))
 
     def CheckSequence(self):
-        pass
+        if playerSeq == sequence:
+            Hardware.RightSeqence
+        else:
+            Hardware.WrongSequence
 
