@@ -28,12 +28,11 @@ class Game:
     
 class Hardware(Game):
 
-    def __init__(self, softwareClass):
+    def __init__(self):
         self.gPin = gPin
         self.rPin = rPin
         self.bPin = bPin
         self.piezoPin = piezoPin
-        self.softwareClass = softwareClass
     
     def ShowSequence(self):
         pass
@@ -50,13 +49,12 @@ class Hardware(Game):
 
 class Software(Game):
 
-    def __init__(self, hardwareClass):
+    def __init__(self):
         self.sequence = sequence
         self.playerSeq = playerSeq
         self.level = level
         self.note = note
         self.speed = speed
-        self.hardwareClass = hardwareClass
     
     def GenerateSequence(self):
         global sequence
