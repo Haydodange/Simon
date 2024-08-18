@@ -34,9 +34,15 @@ class Hardware(Game):
         self.bPin = bPin
         self.piezoPin = piezoPin
     
-    def ShowSequence(self):
-        pass
-    
+    def ShowSequence(self, displaySequence):
+        self.displaySequence = displaySequence
+
+        for x in displaySequence:
+            print(x)
+
+
+
+
     def GetSequence(self):
         pass
 
