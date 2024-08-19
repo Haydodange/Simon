@@ -62,8 +62,7 @@ class Hardware(Game):
             
     def GetSequence(self):
         global playerSeq
-        button1 = 0
-        button2 = 3
+       
 
 
 class Software(Game):
