@@ -1,4 +1,4 @@
-from machine import Pin
+from machine import Pin, PWM
 from time import sleep_ms
 from random import randint
 
@@ -20,7 +20,7 @@ badSound = 233
 gPin = Pin(12, Pin.OUT)
 rPin = Pin(11, Pin.OUT)
 bPin = Pin(13, Pin.OUT)
-piezoPin = Pin(16, Pin.OUT)
+piezoPin = PWM(Pin(16))
 
 
 class Game:
@@ -35,32 +35,35 @@ class Hardware(Game):
         self.piezoPin = piezoPin
     
     def ShowSequence(self, displaySequence):
-        self.displaySequence = displaySequence
 
         for x in displaySequence:
             if x == 0:
                 rPin.on()
+                piezoPin.freq(rSound)
+                piezoPin.duty_u16(1000)
             elif x == 1:
                 gPin.on()
+                piezoPin.freq(gSound)
+                piezoPin.duty_u16(1000)
             elif x == 2:
                 bPin.on()
+                piezoPin.freq(bSound)
+                piezoPin.duty_u16(1000)
             elif x == 3:
                 rPin.on()
                 gPin.on()
+                piezoPin.freq(ySound)
+                piezoPin.duty_u16(1000)
             sleep_ms(speed)
             rPin.off()
             gPin.off()
             bPin.off()
+            piezoPin.duty_u16(0)
             
     def GetSequence(self):
+        global playerSeq
         button1 = 0
         button2 = 3
-
-    def RightSeqence(self):
-        pass
-
-    def WrongSequence(self):
-        pass
 
 
 class Software(Game):
@@ -77,9 +80,17 @@ class Software(Game):
         sequence.append(randint(0,3))
         speed =- 50
 
+    
+    def RightSeqence(self):
+        pass
+
+    def WrongSequence(self):
+        pass
+
     def CheckSequence(self):
         if playerSeq == sequence:
-            Hardware.RightSeqence
+            Software.RightSeqence
         else:
-            Hardware.WrongSequence
+            Software.WrongSequence
+
 
