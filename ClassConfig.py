@@ -38,13 +38,23 @@ class Hardware(Game):
         self.displaySequence = displaySequence
 
         for x in displaySequence:
-            print(x)
-
-
-
-
+            if x == 0:
+                rPin.on()
+            elif x == 1:
+                gPin.on()
+            elif x == 2:
+                bPin.on()
+            elif x == 3:
+                rPin.on()
+                gPin.on()
+            sleep_ms(speed)
+            rPin.off()
+            gPin.off()
+            bPin.off()
+            
     def GetSequence(self):
-        pass
+        button1 = 0
+        button2 = 3
 
     def RightSeqence(self):
         pass
