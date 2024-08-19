@@ -8,12 +8,12 @@ sequence = []
 playerSeq = []
 level = 1
 note = 0
-speed = 1000
+speed = 1050
 
-gSound = 261
-rSound = 293
-ySound = 329
-bSound = 349
+gSound = 200
+rSound = 300
+ySound = 400
+bSound = 500
 
 badSound = 233
 
@@ -63,8 +63,9 @@ class Software(Game):
         self.speed = speed
     
     def GenerateSequence(self):
-        global sequence
+        global sequence, speed
         sequence.append(randint(0,3))
+        speed =- 50
 
     def CheckSequence(self):
         if playerSeq == sequence:
