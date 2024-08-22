@@ -17,10 +17,16 @@ bSound = 500
 
 badSound = 233
 
-gPin = Pin(12, Pin.OUT)
-rPin = Pin(11, Pin.OUT)
-bPin = Pin(13, Pin.OUT)
+gPin = Pin(13, Pin.OUT)
+rPin = Pin(14, Pin.OUT)
+bPin = Pin(12, Pin.OUT)
 piezoPin = PWM(Pin(16))
+
+rButton = Pin(17, Pin.IN)
+yButton = Pin(18, Pin.IN)
+gButton = Pin(19, Pin.IN)
+bButton = Pin(20, Pin.IN)
+resetButton = Pin(16, Pin.IN)
 
 
 class Game:
