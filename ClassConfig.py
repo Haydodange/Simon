@@ -20,7 +20,7 @@ badSound = 233
 gPin = Pin(13, Pin.OUT)
 rPin = Pin(14, Pin.OUT)
 bPin = Pin(12, Pin.OUT)
-piezoPin = PWM(Pin(16))
+piezoPin = PWM(Pin(26))
 
 rButton = Pin(17, Pin.IN)
 yButton = Pin(18, Pin.IN)
@@ -40,9 +40,9 @@ class Hardware(Game):
         self.bPin = bPin
         self.piezoPin = piezoPin
     
-    def ShowSequence(self, displaySequence):
+    def ShowSequence(self):
 
-        for x in displaySequence:
+        for x in sequence:
             if x == 0:
                 rPin.on()
                 piezoPin.freq(rSound)
@@ -68,8 +68,8 @@ class Hardware(Game):
             
     def GetSequence(self):
         global playerSeq
-       
-
+               
+        
 
 class Software(Game):
 
@@ -84,7 +84,7 @@ class Software(Game):
         global sequence, speed
         sequence.append(randint(0,3))
         speed =- 50
-
+        
     
     def RightSeqence(self):
         pass
