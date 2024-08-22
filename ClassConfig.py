@@ -68,7 +68,15 @@ class Hardware(Game):
             
     def GetSequence(self):
         global playerSeq
-               
+        while len(sequence) > 0:
+            if rButton.value() == True:
+                playerSeq.append(0)
+            elif yButton.value() == True:
+                playerSeq.append(3)
+            elif gButton.value() == True:
+                playerSeq.append(1)
+            elif bButton.value() == True:
+                playerSeq.append(2)       
         
 
 class Software(Game):
