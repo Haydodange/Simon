@@ -10,9 +10,6 @@ level = 1
 note = 0
 speed = 1050
 
-<<<<<<< HEAD
-sequence = software.GenerateSequence()
-=======
 lcd = GpioLcd(rs_pin = Pin(3),
               enable_pin = Pin(2),
               d0_pin = Pin(11),
@@ -39,7 +36,6 @@ software.GenerateSequence()
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
 software.GenerateSequence()
->>>>>>> 4878003b9988f214c41dbef1e75ddfc41884aaa1
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
 
