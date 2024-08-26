@@ -15,6 +15,6 @@ lcd = GpioLcd(rs_pin = Pin(3),
               d7_pin = Pin(4),
               num_lines = 2, num_columns = 16)
 #print the string on the display
-lcd.putstr('Simon Level 10000')
+lcd.putstr('Press Start To  Play Again')
 
 

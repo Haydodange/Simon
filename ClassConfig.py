@@ -40,9 +40,9 @@ class Hardware(Game):
         self.bPin = bPin
         self.piezoPin = piezoPin
     
-    def ShowSequence(self):
+    def ShowSequence(self, displaySequence):
 
-        for x in sequence:
+        for x in displaySequence:
             if x == 0:
                 rPin.on()
                 piezoPin.freq(rSound)
@@ -68,8 +68,8 @@ class Hardware(Game):
             
     def GetSequence(self):
         global playerSeq
-        
-        for i in range(len(sequence)):
+        i = 0
+        while len(playerSeq) < len(sequence):
             if rButton.value() == True:
                 playerSeq.append(0)
             elif yButton.value() == True:
@@ -78,7 +78,13 @@ class Hardware(Game):
                 playerSeq.append(1)
             elif bButton.value() == True:
                 playerSeq.append(2)       
-        
+            if i == len(playerSeq):
+                if playerSeq[i] != sequence[i]:
+                    Software.WrongSequence
+                else:
+                    i += 1
+        else:
+            Software.RightSeqence
 
 class Software(Game):
 
