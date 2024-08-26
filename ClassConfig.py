@@ -50,6 +50,7 @@ class Hardware(Game):
         self.rPin = rPin
         self.bPin = bPin
         self.piezoPin = piezoPin
+        self.software = Software()
     
     def ShowSequence(self, displaySequence):
 
@@ -79,23 +80,26 @@ class Hardware(Game):
             
     def GetSequence(self):
         global playerSeq
-        i = 0
-        while len(playerSeq) < len(sequence):
-            if rButton.value() == True:
-                playerSeq.append(0)
-            elif yButton.value() == True:
-                playerSeq.append(3)
-            elif gButton.value() == True:
-                playerSeq.append(1)
-            elif bButton.value() == True:
-                playerSeq.append(2)       
-            if i == len(playerSeq):
+        x = -1
+        for i in range(len(sequence)):
+            while x < len(playerSeq):
+                if rButton.value() == True:
+                    playerSeq.append(0)
+                    x += 1
+                elif yButton.value() == True:
+                    playerSeq.append(3)
+                    x += 1
+                elif gButton.value() == True:
+                    playerSeq.append(1)
+                    x += 1
+                elif bButton.value() == True:
+                    playerSeq.append(2)
+                    x += 1       
+            else:
                 if playerSeq[i] != sequence[i]:
-                    Software.WrongSequence
-                else:
-                    i += 1
-        else:
-            Software.RightSeqence
+                    self.software.WrongSequence()
+        if playerSeq == sequence:
+            self.software.RightSeqence()
 
 class Software(Game):
 
