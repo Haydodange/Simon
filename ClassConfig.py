@@ -9,6 +9,7 @@ playerSeq = []
 level = 1
 note = 0
 speed = 1050
+lose = 0
 
 gSound = 200
 rSound = 300
@@ -145,7 +146,7 @@ class Software(Game):
         Software.GenerateSequence(self)
 
     def WrongSequence(self):
-        global sequence, playerSeq, level, note, speed  
+        global sequence, playerSeq, level, note, speed, lose
         sequence = []
         playerSeq = []
         level = 1
@@ -160,6 +161,7 @@ class Software(Game):
         while resetButton.value() == False:
             sleep_ms(50)
         Software.GenerateSequence(self)
+        lose += 1
 
   
 

@@ -24,6 +24,7 @@ lcd = GpioLcd(rs_pin = Pin(3),
 
 #while resetButton.value() == False:
     #lcd.putstr("Press Start")
+    #while lose < 1:
     
 
 software.GenerateSequence()
