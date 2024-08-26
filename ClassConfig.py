@@ -80,44 +80,42 @@ class Hardware(Game):
             piezoPin.duty_u16(0)
             
     def GetSequence(self):
-        global playerSeq
-        x = -1
+        #global playerSeq
+
         for i in range(len(sequence)):
-            while x < len(sequence):
+            while rButton.value() == False and yButton.value() == False and gButton.value() == False and bButton.value() == False:
+                sleep_ms(50)       
+            else:
                 if rButton.value() == True:
-                    playerSeq.append(0)
-                    x += 1
+                    self.software.playerSeq.append(0)
                     rPin.on()
                     piezoPin.freq(rSound)
                     piezoPin.duty_u16(1000)
                 elif yButton.value() == True:
-                    playerSeq.append(3)
+                    self.software.playerSeq.append(3)
                     rPin.on()
                     gPin.on()
                     piezoPin.freq(ySound)
                     piezoPin.duty_u16(1000)
-                    x += 1
                 elif gButton.value() == True:
-                    playerSeq.append(1)
+                    self.software.playerSeq.append(1)
                     gPin.on()
                     piezoPin.freq(gSound)
                     piezoPin.duty_u16(1000)
-                    x += 1
                 elif bButton.value() == True:
-                    playerSeq.append(2)
+                    self.software.playerSeq.append(2)
                     bPin.on()
                     piezoPin.freq(bSound)
                     piezoPin.duty_u16(1000)
-                    x += 1       
-            else:
                 sleep_ms(1000)
+
                 rPin.off()
                 gPin.off()
                 bPin.off()
                 piezoPin.duty_u16(0)
-                if playerSeq[i] != sequence[i]:
+                if self.software.playerSeq[i] != self.software.sequence[i]:
                     self.software.WrongSequence()
-        if playerSeq == sequence:
+        if self.software.playerSeq == self.software.sequence:
             self.software.RightSeqence()
 
 class Software(Game):
@@ -130,15 +128,13 @@ class Software(Game):
         self.speed = speed
     
     def GenerateSequence(self):
-        global sequence, speed, level
-        lcd.putstr("Simon Level " + str(level)) 
+#        global sequence, speed, level
+        lcd.putstr("Simon Level " + str(self.level)) 
         sleep_ms(2000)
         lcd.clear()
-        sequence.append(randint(0,3))
-        speed =- 50
-        int(level)
-        level += 1
-        return sequence
+        self.sequence.append(randint(0,3))
+        self.speed =- 50
+        self.level += 1
             
     def RightSeqence(self):
         global playerSeq

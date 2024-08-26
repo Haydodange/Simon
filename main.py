@@ -1,14 +1,14 @@
 from ClassConfig import *
 from gpio_lcd import GpioLcd
 
-software = Software()
+#software = Software()
 hardware = Hardware()
 
-sequence = []
-playerSeq = []
-level = 1
-note = 0
-speed = 1050
+# sequence = []
+# playerSeq = []
+# level = 1
+# note = 0
+# speed = 1050
 
 lcd = GpioLcd(rs_pin = Pin(3),
               enable_pin = Pin(2),
@@ -27,16 +27,15 @@ lcd = GpioLcd(rs_pin = Pin(3),
     #while lose < 1:
     
 
-software.GenerateSequence()
+sequence = hardware.software.GenerateSequence()
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
-software.GenerateSequence()
+hardware.software.GenerateSequence()
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
-software.GenerateSequence()
+hardware.software.GenerateSequence()
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
-software.GenerateSequence()
+hardware.software.GenerateSequence()
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
-
