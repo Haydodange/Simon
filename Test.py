@@ -31,6 +31,9 @@ gButton = Pin(19, Pin.IN)
 bButton = Pin(20, Pin.IN)
 resetButton = Pin(16, Pin.IN)
 
+
+
+
 while True:
     if rButton.value() == True:
         print("Red")

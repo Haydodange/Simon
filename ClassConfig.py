@@ -114,12 +114,15 @@ class Software(Game):
         global sequence, speed, level
         lcd.putstr("Simon Level " + str(level)) 
         sleep_ms(2000)
+        lcd.clear()
         sequence.append(randint(0,3))
         speed =- 50
         int(level)
         level += 1
             
     def RightSeqence(self):
+        global playerSeq
+        playerSeq = []
         Software.GenerateSequence(self)
 
     def WrongSequence(self):
@@ -131,8 +134,10 @@ class Software(Game):
         speed = 1050
         lcd.putstr('You lost')
         sleep_ms(2000)
+        lcd.clear()
         lcd.putstr('Press Start To  Play Again')
         sleep_ms(2000)
+        lcd.clear()
         while resetButton.value() == False:
             sleep_ms(50)
         Software.GenerateSequence(self)
