@@ -1,6 +1,18 @@
+
 from ClassConfig import *
 
+
+software = Software()
 hardware = Hardware()
 
-hardware.ShowSequence([1, 2, 0])
+sequence = []
+playerSeq = []
+level = 1
+note = 0
+speed = 1050
+
+software.GenerateSequence()
+hardware.ShowSequence(sequence)
+hardware.GetSequence()
+
 
