@@ -68,7 +68,8 @@ class Hardware(Game):
             
     def GetSequence(self):
         global playerSeq
-        while len(sequence) > 0:
+        
+        for i in range(len(sequence)):
             if rButton.value() == True:
                 playerSeq.append(0)
             elif yButton.value() == True:
@@ -95,7 +96,7 @@ class Software(Game):
         
     
     def RightSeqence(self):
-        pass
+        if playerSeq
 
     def WrongSequence(self):
         pass
