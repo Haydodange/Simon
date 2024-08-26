@@ -20,7 +20,7 @@ badSound = 233
 gPin = Pin(13, Pin.OUT)
 rPin = Pin(14, Pin.OUT)
 bPin = Pin(12, Pin.OUT)
-piezoPin = PWM(Pin(26))
+piezoPin = PWM(Pin(22))
 
 rButton = Pin(17, Pin.IN)
 yButton = Pin(18, Pin.IN)
@@ -57,7 +57,7 @@ class Hardware(Game):
         for x in displaySequence:
             if x == 0:
                 rPin.on()
-                piezoPin.freq(rSound)
+                piezoPin.freq(300)
                 piezoPin.duty_u16(1000)
             elif x == 1:
                 gPin.on()
@@ -72,7 +72,7 @@ class Hardware(Game):
                 gPin.on()
                 piezoPin.freq(ySound)
                 piezoPin.duty_u16(1000)
-            sleep_ms(speed)
+            sleep_ms(1000)
             rPin.off()
             gPin.off()
             bPin.off()
@@ -82,20 +82,38 @@ class Hardware(Game):
         global playerSeq
         x = -1
         for i in range(len(sequence)):
-            while x < len(playerSeq):
+            while x < len(sequence):
                 if rButton.value() == True:
                     playerSeq.append(0)
                     x += 1
+                    rPin.on()
+                    piezoPin.freq(rSound)
+                    piezoPin.duty_u16(1000)
                 elif yButton.value() == True:
                     playerSeq.append(3)
+                    rPin.on()
+                    gPin.on()
+                    piezoPin.freq(ySound)
+                    piezoPin.duty_u16(1000)
                     x += 1
                 elif gButton.value() == True:
                     playerSeq.append(1)
+                    gPin.on()
+                    piezoPin.freq(gSound)
+                    piezoPin.duty_u16(1000)
                     x += 1
                 elif bButton.value() == True:
                     playerSeq.append(2)
+                    bPin.on()
+                    piezoPin.freq(bSound)
+                    piezoPin.duty_u16(1000)
                     x += 1       
             else:
+                sleep_ms(1000)
+                rPin.off()
+                gPin.off()
+                bPin.off()
+                piezoPin.duty_u16(0)
                 if playerSeq[i] != sequence[i]:
                     self.software.WrongSequence()
         if playerSeq == sequence:
@@ -119,6 +137,7 @@ class Software(Game):
         speed =- 50
         int(level)
         level += 1
+        return sequence
             
     def RightSeqence(self):
         global playerSeq

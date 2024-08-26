@@ -11,7 +11,7 @@ level = 1
 note = 0
 speed = 1050
 
-software.GenerateSequence()
+sequence = software.GenerateSequence()
 hardware.ShowSequence(sequence)
 hardware.GetSequence()
 
