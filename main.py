@@ -26,8 +26,7 @@ lcd = GpioLcd(rs_pin = Pin(3),
     #lcd.putstr("Press Start")
     #while lose < 1:
     
-for i in range(3):
+for i in range(10):
     sequence = hardware.software.GenerateSequence()
-    print(sequence)
     hardware.ShowSequence()
     hardware.GetSequence()

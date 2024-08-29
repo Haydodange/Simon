@@ -8,7 +8,7 @@ sequence = []
 playerSeq = []
 level = 1
 note = 0
-speed = 1050
+speed = 1020
 lose = 0
 
 gSound = 200
@@ -72,12 +72,13 @@ class Hardware(Game):
                 gPin.on()
                 piezoPin.freq(ySound)
                 piezoPin.duty_u16(1000)
-            sleep_ms(1000)
+            sleep_ms(self.software.speed)
+            print(self.software.speed)
             rPin.off()
             gPin.off()
             bPin.off()
             piezoPin.duty_u16(0)
-            sleep_ms(100)
+            sleep_ms(int(self.software.speed/10))
             
     def GetSequence(self):
         #global playerSeq
@@ -107,11 +108,16 @@ class Hardware(Game):
                     bPin.on()
                     piezoPin.freq(bSound)
                     piezoPin.duty_u16(1000)
-                sleep_ms(1000)
+                sleep_ms(self.software.speed)
                 rPin.off()
                 gPin.off()
                 bPin.off()
                 piezoPin.duty_u16(0)
+            if self.software.playerSeq[i] != self.software.sequence[i]:
+                print(f"Player {self.software.playerSeq}")
+                print(f"Sequence {self.software.sequence}")
+                print(self.software.sequence)
+                self.software.WrongSequence()
         if self.software.playerSeq == self.software.sequence:
             print(f"Player {self.software.playerSeq}")
             print(f"Sequence {self.software.sequence}")
@@ -136,7 +142,7 @@ class Software(Game):
         sleep_ms(2000)
         lcd.clear()
         self.sequence.append(randint(0,3))
-        self.speed =- 50
+        self.speed -= 50
         self.level += 1
         return self.sequence
             
@@ -149,7 +155,7 @@ class Software(Game):
         self.playerSeq = []
         self.level = 1
         self.note = 0
-        self.speed = 1050
+        self.speed = 1020
         lcd.putstr('You lost')
         sleep_ms(2000)
         lcd.clear()
