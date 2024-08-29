@@ -43,7 +43,7 @@ sleep_ms(1500)
 hardware.ShowSequence([2, 1, 3, 0])
 
 print("Hardware GetSequence test, press the buttons left to right")
-hardware.software.sequence = [2, 1, 3, 0]
+hardware.software.sequence = [0, 3, 1, 2]
 hardware.GetSequence()
 
 print("Generate sequence")
