@@ -18,11 +18,11 @@ print(hardware.software.playerSeq)
 sleep_ms(1000)
 
 print("""Wrong sequence clears all the variables in the main object""")
-hardware.software.sequence = []
-hardware.software.playerSeq = []
-hardware.software.level = 1
-hardware.software.note = 0
-hardware.software.speed = 1050
+hardware.software.sequence = [1, 2 , 3]
+hardware.software.playerSeq = [1, 2, 0]
+hardware.software.level = 5
+hardware.software.note = 72
+hardware.software.speed = 15550
 print(f"""{hardware.software.sequence}
 {hardware.software.playerSeq}
 {hardware.software.level}
