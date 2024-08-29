@@ -4,8 +4,6 @@ from time import sleep_ms
 
 hardware = Hardware()
 
-
-
 print("Generate sequence")
 hardware.software.GenerateSequence()
 print(hardware.software.sequence)
