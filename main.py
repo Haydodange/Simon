@@ -17,16 +17,19 @@ lcd = GpioLcd(rs_pin = Pin(3),
 
 def Start():
     lcd.putstr("Press Start")
+    hardware.software.lose = False
     while resetButton.value() == False:
         sleep_ms(50)    
     lcd.clear()
+    hardware.software.speed = 200
+    hardware.ShowSequence([0, 3, 1, 2, 1, 3, 0])
+    hardware.software.speed = 1050
     runGame()
 
 def runGame():
-    hardware.software.lose = False
     while hardware.software.lose == False:
         hardware.software.sequence = hardware.software.GenerateSequence()
-        hardware.ShowSequence()
+        hardware.ShowSequence(hardware.software.sequence)
         hardware.GetSequence()
     Start()
 

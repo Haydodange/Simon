@@ -8,8 +8,8 @@ sequence = []
 playerSeq = []
 level = 1
 note = 0
-speed = 1020
-lose = 0
+speed = 1050
+lose = False
 
 gSound = 200
 rSound = 300
@@ -53,27 +53,30 @@ class Hardware(Game):
         self.piezoPin = piezoPin
         self.software = Software()
     
-    def ShowSequence(self):
-        for x in self.software.sequence:
+    def ShowSequence(self, display):
+        for x in display:
             if x == 0:
                 rPin.on()
                 piezoPin.freq(300)
                 piezoPin.duty_u16(1000)
+                print("Red")
             elif x == 1:
                 gPin.on()
                 piezoPin.freq(gSound)
                 piezoPin.duty_u16(1000)
+                print("Green")
             elif x == 2:
                 bPin.on()
                 piezoPin.freq(bSound)
                 piezoPin.duty_u16(1000)
+                print("Blue")
             elif x == 3:
                 rPin.on()
                 gPin.on()
                 piezoPin.freq(ySound)
                 piezoPin.duty_u16(1000)
+                print("Yellow")
             sleep_ms(self.software.speed)
-            print(self.software.speed)
             rPin.off()
             gPin.off()
             bPin.off()
@@ -92,22 +95,26 @@ class Hardware(Game):
                     rPin.on()
                     piezoPin.freq(rSound)
                     piezoPin.duty_u16(1000)
+                    print("Red")
                 elif yButton.value() == True:
                     self.software.playerSeq.append(3)
                     rPin.on()
                     gPin.on()
                     piezoPin.freq(ySound)
                     piezoPin.duty_u16(1000)
+                    print("Yellow")
                 elif gButton.value() == True:
                     self.software.playerSeq.append(1)
                     gPin.on()
                     piezoPin.freq(gSound)
                     piezoPin.duty_u16(1000)
                 elif bButton.value() == True:
+                    print("Green")
                     self.software.playerSeq.append(2)
                     bPin.on()
                     piezoPin.freq(bSound)
                     piezoPin.duty_u16(1000)
+                    print("Blue")
                 sleep_ms(self.software.speed)
                 rPin.off()
                 gPin.off()
@@ -157,16 +164,15 @@ class Software(Game):
         self.playerSeq = []
         self.level = 1
         self.note = 0
-        self.speed = 1020
+        self.speed = 1050
         lcd.putstr('You lost')
         sleep_ms(2000)
         lcd.clear()
         lcd.putstr('Press Start To  Play Again')
-        sleep_ms(2000)
-        lcd.clear()
         while resetButton.value() == False:
             sleep_ms(50)
         self.lose = True
+        lcd.clear()
   
 
 
