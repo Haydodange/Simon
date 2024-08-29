@@ -19,3 +19,4 @@ hardware.GetSequence()
 print("Generate sequence")
 hardware.software.GenerateSequence()
 print(hardware.software.sequence)
+
