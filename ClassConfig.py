@@ -136,8 +136,10 @@ class Software(Game):
         self.level = level
         self.note = note
         self.speed = speed
-    
+        self.lose = lose
+
     def GenerateSequence(self):
+        self.lose = False
         lcd.putstr("Simon Level " + str(self.level)) 
         sleep_ms(2000)
         lcd.clear()
@@ -164,7 +166,7 @@ class Software(Game):
         lcd.clear()
         while resetButton.value() == False:
             sleep_ms(50)
-        Software.GenerateSequence(self)
+        self.lose = True
   
 
 
