@@ -1,14 +1,7 @@
 from ClassConfig import *
 from gpio_lcd import GpioLcd
 
-#software = Software()
 hardware = Hardware()
-
-# sequence = []
-# playerSeq = []
-# level = 1
-# note = 0
-# speed = 1050
 
 lcd = GpioLcd(rs_pin = Pin(3),
               enable_pin = Pin(2),
@@ -22,12 +15,19 @@ lcd = GpioLcd(rs_pin = Pin(3),
               d7_pin = Pin(4),
               num_lines = 2, num_columns = 16)
 
-#while resetButton.value() == False:
-    #lcd.putstr("Press Start")
-    #while lose < 1:
-    
-for i in range(3):
-    sequence = hardware.software.GenerateSequence()
-    print(sequence)
-    hardware.ShowSequence()
-    hardware.GetSequence()
+def Start():
+    lcd.putstr("Press Start")
+    while resetButton.value() == False:
+        sleep_ms(50)    
+    lcd.clear()
+    runGame()
+
+def runGame():
+    hardware.software.lose = False
+    while hardware.software.lose == False:
+        hardware.software.sequence = hardware.software.GenerateSequence()
+        hardware.ShowSequence()
+        hardware.GetSequence()
+    Start()
+
+Start()
